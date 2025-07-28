@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>博兎ライ｜公式サイト</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background-color: #f9f5f3;
+            color: #4b3b38;
+        }
+
+        header {
+            background-color: #fef9f7;
+            padding: 30px 0 10px;
+            text-align: center;
+        }
+
+            header img {
+                max-width: 280px;
+                height: auto;
+            }
+
+        nav {
+            background-color: #b88d88;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 14px 0;
+            font-size: 1rem;
+        }
+
+            nav a {
+                color: #fff8f4;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                nav a:hover {
+                    color: #ffe1dc;
+                }
+
+        main {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #a35858;
+            border-left: 5px solid #d8a6a1;
+            padding-left: 10px;
+            margin-bottom: 20px;
+
+        }
+
+        p, ul {
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: #b78d87;
+            color: #fff8f4;
+            text-align: center;
+            padding: 25px 10px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .button {
+            background-color: #a35858;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 2px 2px 4px #a08888;
+            transition: background 0.3s ease;
+        }
+
+            .button:hover {
+                background-color: #8f4a4a;
+            }
+
+        @media screen and (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            main {
+                padding: 30px 15px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="博兎ライ様_ロゴ_Fix_カラーフチ.png" alt="博兎ライ ロゴ" />
+    </header>
+
+    <nav>
+        <a href="index.html">プロフィール</a>
+        <a href="request.html">ご依頼について</a>
+        <a href="tamashii.html">魂募集</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2 class="section-title">📝 プロフィール</h2>
+
+            <div style="
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  ">
+
+                <!-- 左側：アイコン画像とSNSリンク -->
+                <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+                    <img src="博兎アイコン.png" alt="博兎ライのアイコン" style="
+      width: 160px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    ">
+                    <div style="margin-top: 10px; text-align: center;">
+                        <a href="https://youtube.com/@h4kut0rai?si=mS008YVv39NudqGb" target="_blank" style="
+        margin: 0 10px;
+        color: #8a5652;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      ">
+                            🎥 YouTube
+                        </a>
+                        <a href="https://x.com/h4kut0rai" target="_blank" style="
+        margin: 0 10px;
+        color: #8a5652;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      ">
+                            🐦 X (Twitter)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 右側：自己紹介 -->
+                <p style="flex: 1; margin: 0;">
+                    <strong>おはぴょん🐇❤どうも、博兎ライです！</strong><br>
+                    ゲーム配信やお絵描き、まったり雑談などを中心に活動しています。<br>
+                    落ち着いた空間を届けられるように、配信もゆるやかに進めています✨
+                </p>
+
+            </div>
+        </section>
+
+        <!-- 進行中のYouTube企画 -->
+        <section id="projects" style="margin-top: 60px;">
+            <h2 class="section-title">🎬 進行中のYouTube企画</h2>
+
+            <!-- 注意書きをタイトルの下・左寄せで -->
+            <p style="font-size:0.95rem; color:#6a5550; margin:5px 0 20px 0;">
+                ※画像をクリックすると企画のYouTubeマイリストへ移動します
+            </p>
+
+            <div style="
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+    ">
+                <!-- あつ森企画 -->
+                <a href="https://youtube.com/playlist?list=PLcF-rcJNmrfqlkO3CXTJqtdxGhLO5HHZo&si=ERcCMbLmCOOW-gR8" target="_blank" style="text-align: center;">
+                    <img src="IMG_1062１.png" alt="あつ森企画"
+                         style="width: 300px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;">
+                </a>
+
+                <!-- スロットVtuber企画 -->
+                <a href="https://youtube.com/playlist?list=PLcF-rcJNmrfqAeFKfaBKnJvdWIzjsRs2r&si=CPjgzO0Oj1696K2i" target="_blank" style="text-align: center;">
+                    <img src="IMG_1148a.PNG" alt="スロットVtuber企画"
+                         style="width: 300px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;">
+                </a>
+            </div>
+        </section>
+
+        <!-- 配信スケジュール -->
+        <section id="schedule" style="margin-top: 60px;">
+            <h2 class="section-title">📅 配信スケジュール</h2>
+            <div style="overflow-x: auto; text-align: center;">
+                <iframe src="https://calendar.google.com/calendar/embed?src=53b4ce8d7379c89bc3e85d22fc47d812e67c94f5e507b1de5d4cda0adffe81fa%40group.calendar.google.com&ctz=Asia%2FTokyo"
+                        style="border: 0; width: 100%; max-width: 800px; height: 600px;"
+                        frameborder="0"
+                        scrolling="no">
+                </iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2025 博兎ライ All Rights Reserved.
+    </footer>
+
+</body>
+</html>

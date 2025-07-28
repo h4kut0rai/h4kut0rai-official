@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>魂募集｜博兎ライ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background-color: #f9f5f3;
+            color: #4b3b38;
+        }
+
+        header {
+            background-color: #fef9f7;
+            padding: 30px 0 10px;
+            text-align: center;
+        }
+
+            header img {
+                max-width: 280px;
+                height: auto;
+            }
+
+        nav {
+            background-color: #b88d88;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 14px 0;
+            font-size: 1rem;
+        }
+
+            nav a {
+                color: #fff8f4;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                nav a:hover {
+                    color: #ffe1dc;
+                }
+
+        main {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #a35858;
+            border-left: 5px solid #d8a6a1;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: #b78d87;
+            color: #fff8f4;
+            text-align: center;
+            padding: 25px 10px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #fff0ec;
+            border-radius: 10px;
+            border: 1px solid #e4c2c2;
+            padding: 15px;
+            width: 220px;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+            .card img {
+                width: 100%;
+                border-radius: 6px;
+            }
+
+        .tags span {
+            background-color: #eed6d3;
+            margin-right: 5px;
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-size: 0.85em;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background: #b47373;
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .tag-filter, .price-filter {
+            margin: 15px 0;
+        }
+
+            .tag-filter label,
+            .price-filter label {
+                margin-right: 12px;
+                font-size: 0.9em;
+            }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="博兎ライ様_ロゴ_Fix_カラーフチ.png" alt="博兎ライ ロゴ" />
+    </header>
+
+    <nav>
+        <a href="index.html">プロフィール</a>
+        <a href="request.html">ご依頼について</a>
+        <a href="tamashii.html">魂募集</a>
+    </nav>
+
+    <main>
+        <section>
+            <h2 class="section-title">👻 魂募集について</h2>
+            <p>
+                現在お仕立て中です！<br />
+                もうしばらくお待ちください✨
+            </p>
+
+            <hr style="margin: 30px 0;">
+
+            <h2>🎨 立ち絵ギャラリー</h2>
+            <p>気に入ったデザインの立ち絵を選んで購入できます。タグ検索や価格帯でも絞り込みできます。(予定)</p>
+
+            <div class="tag-filter">
+                <label><input type="checkbox" value="女" onchange="filterCards()"> 女</label>
+                <label><input type="checkbox" value="男" onchange="filterCards()"> 男</label>
+                <label><input type="checkbox" value="女っぽい男" onchange="filterCards()"> 女っぽい男</label>
+            </div>
+            <div class="tag-filter">
+                <label><input type="checkbox" value="糸目(開眼なし)" onchange="filterCards()"> 糸目(開眼なし)</label>
+                <label><input type="checkbox" value="人魚" onchange="filterCards()"> 人魚</label>
+                <label><input type="checkbox" value="角２本" onchange="filterCards()"> 角２本</label>
+            </div>
+            <div class="tag-filter">
+                <label><input type="checkbox" value="天使" onchange="filterCards()"> 天使</label>
+                <label><input type="checkbox" value="ギャル" onchange="filterCards()"> ギャル</label>
+                <label><input type="checkbox" value="マフィア" onchange="filterCards()"> マフィア</label>
+            </div>
+            <div class="tag-filter">
+                <label><input type="checkbox" value="黄色" onchange="filterCards()"> 黄色</label>
+                <label><input type="checkbox" value="灰色" onchange="filterCards()"> 灰色</label>
+                <label><input type="checkbox" value="白" onchange="filterCards()"> 白</label>
+            </div>
+
+
+
+
+            <div class="price-filter">
+                <label><input type="radio" name="price" value="all" checked onchange="filterCards()"> 全て</label>
+                <label><input type="radio" name="price" value="0" onchange="filterCards()"> 準備中</label>
+                <label><input type="radio" name="price" value="30000" onchange="filterCards()"> ～30,000円</label>
+                <label><input type="radio" name="price" value="50000" onchange="filterCards()"> ～50,000円</label>
+                <label><input type="radio" name="price" value="50001" onchange="filterCards()"> 50,000円以上</label>
+            </div>
+
+            <div class="gallery" id="gallery">
+                <div class="card" data-tags="女 糸目(開眼なし) 天使 黄色" data-price="0">
+                    <img src="V立ち絵1.png" alt="V立ち絵1">
+
+                    <button class="buy-btn" style="background:#8a6b6b; margin-top:8px;" onclick="openSpecModal('準備1.png')">
+                        スペック確認
+                    </button>
+                    <a href="https://www.notion.so/239dec3b3524808ba486cbab2c82110e?source=copy_link"
+                       target="_blank"
+                       class="buy-btn">進捗報告を見る</a>
+                </div>
+
+                <div class="card" data-tags="女っぽい男 人魚 ギャル 灰色" data-price="0">
+                    <img src="V立ち絵2.png" alt="V立ち絵2">
+                    <button class="buy-btn" style="background:#8a6b6b; margin-top:8px;" onclick="openSpecModal('準備2.png')">
+                        スペック確認
+                    </button>
+
+                    <a href="https://www.notion.so/23adec3b352480cb82dffabf367e9e14?source=copy_link" target="_blank" class="buy-btn">進捗報告を見る</a>
+                </div>
+
+            </div>
+
+            <!-- モーダル -->
+            <div id="specModal" style="
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;">
+                <img id="specModalImage" src="" style="
+    max-width:90%;
+    max-height:90%;
+    border-radius:10px;">
+            </div>
+
+            <script>
+                function openSpecModal(imageSrc) {
+                    const modal = document.getElementById('specModal');
+                    const modalImage = document.getElementById('specModalImage');
+                    modalImage.src = imageSrc;
+                    modal.style.display = 'flex';
+                }
+
+                // 背景クリックで閉じる
+                document.getElementById('specModal').addEventListener('click', function (e) {
+                    // e.target が画像ではなく背景だったら閉じる
+                    if (e.target.id === 'specModal') {
+                        this.style.display = 'none';
+                    }
+                });
+
+                function filterCards() {
+                    const selectedTags = Array.from(document.querySelectorAll('.tag-filter input:checked')).map(cb => cb.value);
+                    const selectedPrice = document.querySelector('.price-filter input[name="price"]:checked').value;
+                    const cards = document.querySelectorAll('.card');
+
+                    cards.forEach(card => {
+                        const tags = card.dataset.tags.split(" ");
+                        const price = parseInt(card.dataset.price, 10);
+
+                        const matchesTags = selectedTags.every(tag => tags.includes(tag)) || selectedTags.length === 0;
+
+                        let matchesPrice = true;
+                        if (selectedPrice === "0") {
+                            matchesPrice = price === 0;
+                        } else if (selectedPrice === "30000") {
+                            matchesPrice = price > 0 && price <= 30000;
+                        } else if (selectedPrice === "50000") {
+                            matchesPrice = price > 30000 && price <= 50000;
+                        } else if (selectedPrice === "50001") {
+                            matchesPrice = price > 50000;
+                        }
+
+                        card.style.display = matchesTags && matchesPrice ? 'block' : 'none';
+                    });
+                }
+            </script>
+
+        </section>
+    </main>
+
+
+<footer>
+    © 2025 博兎ライ All Rights Reserved.
+</footer>
+
+</body>
+</html>

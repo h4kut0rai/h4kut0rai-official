@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ご依頼について｜博兎ライ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background-color: #fef9f7;
+            color: #6a4a42;
+        }
+
+        header {
+            background-color: #fef9f7;
+            padding: 30px 0 10px;
+            text-align: center;
+        }
+
+            header img {
+                max-width: 280px;
+                height: auto;
+            }
+
+        nav {
+            background-color: #b88d88;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 14px 0;
+            font-size: 1rem;
+        }
+            nav a {
+                color: #fff8f4;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                nav a:hover {
+                    color: #ffe1dc;
+                }
+
+        main {
+            padding: 50px 20px;
+            max-width: 900px; /* ここを1100pxから900pxに合わせる */
+            margin: auto;
+        }
+
+        .request-title {
+            font-size: 1.8rem;
+            color: #a35858;
+            border-left: 5px solid #d8a6a1;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+        .menu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .menu-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+            .menu-card img {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                background: #eee;
+                border-radius: 6px;
+                margin-bottom: 10px;
+            }
+
+            .menu-card h3 {
+                font-size: 1.1rem;
+                margin: 10px 0 5px;
+            }
+
+            .menu-card p {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+            }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #a1746f;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+            .button:hover {
+                background-color: #c08880;
+            }
+
+        .gallery {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: none;
+        }
+
+            .gallery.active {
+                display: block;
+            }
+
+            .gallery h4 {
+                margin-bottom: 16px;
+                font-size: 1.2rem;
+                color: #8a5652;
+            }
+
+        .sample-list {
+            display: flex;
+            overflow-x: auto;
+            gap: 13px;
+            padding-bottom: 10px;
+        }
+
+        .sample-item {
+            min-width: 140px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+            .sample-item img {
+                width: 100%;
+                height: 140px;
+                object-fit: cover;
+                border-radius: 6px;
+                margin-bottom: 4px;
+                background: #ddd;
+                cursor: pointer;
+            }
+
+        footer {
+            background-color: #b88d88;
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 80px;
+            font-size: 0.85rem;
+        }
+
+        /* === モーダル用のスタイル === */
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+            #imageModal img {
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 8px;
+            }
+
+            #imageModal .close {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                font-size: 2rem;
+                color: #fff;
+                cursor: pointer;
+            }
+
+        /* サムネイルを6列固定のグリッドにする（常時適用） */
+        #trpg-face-thumbs {
+            display: grid;
+            grid-template-columns: repeat(6, 90px);
+            gap: 10px;
+            justify-content: center;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+            #trpg-face-thumbs img {
+                width: 90px;
+                height: 90px;
+                object-fit: cover;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #a35858;
+            border-left: 5px solid #d8a6a1;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+
+
+        @media (max-width: 640px) {
+            .menu-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sample-item {
+                min-width: 120px;
+            }
+
+        }
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <img src="博兎ライ様_ロゴ_Fix_カラーフチ.png" alt="博兎ライ ロゴ" />
+    </header>
+
+    <nav>
+        <a href="index.html">プロフィール</a>
+        <a href="request.html">ご依頼について</a>
+        <a href="tamashii.html">魂募集</a>
+    </nav>
+
+    <main>
+        <h2 class="section-title request-title">🖌 ご依頼メニュー</h2>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="アイコン.png" alt="icon sample">
+                <h3>アイコンイラスト</h3>
+                <p>¥2,000</p>
+                <div class="btn-group">
+                    <button class="button" onclick="showSamples('icon')">実績を見る</button>
+                    <a href="https://skima.jp/item/detail?item_id=303398&sh=DNyW8IU" target="_blank" class="button">依頼する</a>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="TRPG.png" alt="model sample">
+                <h3>TRPG立ち絵</h3>
+                <p>商用利用なし¥1,000　商用利用あり¥3,000</p>
+                <div class="btn-group">
+                    <button class="button" onclick="showSamples('vtuber')">実績を見る</button>
+                    <a href="https://skima.jp/item/detail?item_id=305036&sh=1OmsxuZ" target="_blank" class="button">依頼する</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="gallery-icon" class="gallery">
+            <h4>🎨 アイコン実績</h4>
+            <p style="font-size: 0.85rem; color: #777; margin-top: -10px; margin-bottom: 15px;">
+                ※画像をクリックすると拡大表示できます
+            </p>
+            <div class="sample-list">
+                <div class="sample-item"><img src="アイコン6.png" alt=""></div>
+                <div class="sample-item"><img src="アイコン5.png" alt=""></div>
+                <div class="sample-item"><img src="アイコン4.png" alt=""></div>
+                <div class="sample-item"><img src="アイコン3.png" alt=""></div>
+                <div class="sample-item"><img src="アイコン2.png" alt=""></div>
+                <div class="sample-item"><img src="アイコン7.png" alt=""></div>
+                <div class="sample-item"><img src="アイコン1.png" alt=""></div>
+            </div>
+        </div>
+
+        <div id="gallery-vtuber" class="gallery">
+            <h4>🎨 TRPG立ち絵実績</h4>
+            <p style="font-size: 0.85rem; color: #777; margin-top: -10px; margin-bottom: 15px;">
+                ※画像をクリックすると拡大表示できます
+            </p>
+
+            <div class="sample-list">
+                <div class="sample-item"><img src="立ち絵1.png" alt=""></div>
+                <div class="sample-item"><img src="立ち絵2.png" alt=""></div>
+                <div class="sample-item"><img src="立ち絵3.png" alt=""></div>
+                <div class="sample-item"><img src="立ち絵4.png" alt=""></div>
+                <div class="sample-item"><img src="立ち絵5.png" alt=""></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 博兎ライ All Rights Reserved.
+    </footer>
+
+    <!-- モーダル -->
+    <div id="imageModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="">
+        <!-- TRPG用 -->
+        <div id="trpgModalContent" style="display:none; flex-wrap:wrap; gap:30px; justify-content:center; align-items:flex-start; max-width:90%; max-height:90%;">
+            <div style="flex:1; min-width:250px; text-align:center;">
+                <img id="trpg-stand" src="" style="max-width:100%; max-height:80vh; border-radius:6px;">
+            </div>
+            <div style="flex:0 0 auto; display:flex; flex-direction:column; align-items:center;">
+                <img id="trpg-main-face" src="" style="width:250px; height:250px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                <div id="trpg-face-thumbs" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function showSamples(type) {
+            document.querySelectorAll('.gallery').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById(`gallery-${type}`);
+            if (target) {
+                target.classList.add('active');
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        const modal = document.getElementById('imageModal');
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        function changeFaceInModal(src) {
+            document.getElementById('trpg-main-face').src = src;
+        }
+
+        // 画像クリックでモーダル表示
+        document.querySelectorAll('.sample-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                const src = img.getAttribute('src');
+
+                // TRPG立ち絵のモーダル
+                if (src.startsWith('立ち絵')) {
+                    modal.innerHTML = `
+                   <span class="close" onclick="closeModal()">&times;</span>
+                   <div id="trpgModalContent" style="display:flex; gap:30px; justify-content:center; align-items:flex-start; max-width:90%; max-height:90%;">
+                       <div style="flex:1; min-width:250px; text-align:center;">
+                           <img id="trpg-stand" src="${src}" style="max-width:100%; max-height:80vh; border-radius:6px;">
+                       </div>
+                       <div style="flex:0 0 auto; display:flex; flex-direction:column; align-items:center;">
+                           <img id="trpg-main-face" src="" style="width:300px; height:300px; object-fit:cover; border-radius:8px; margin-bottom:15px;">
+                           <!-- ここから ↓ flex を削除！ -->
+                           <div id="trpg-face-thumbs"></div>
+                           <!-- ここまで -->
+                       </div>
+                   </div>
+                   `;
+                    const thumbsContainer = modal.querySelector('#trpg-face-thumbs');
+                    const mainFace = modal.querySelector('#trpg-main-face');
+
+                    // --- 立ち絵ごとのサムネイルセットを定義 ---
+                    let thumbs = [];
+                    if (src === '立ち絵1.png') {
+                        thumbs = [
+                            '立ち絵1_1.png',
+                            '立ち絵1_2.png',
+                            '立ち絵1_3.png',
+                            '立ち絵1_4.png',
+                            '立ち絵1_5.png',
+                            '立ち絵1_6.png',
+                            '立ち絵1_7.png',
+                            '立ち絵1_8.png',
+                            '立ち絵1_9.png',
+                            '立ち絵1_10.png',
+                            '立ち絵1_11.png',
+                            '立ち絵1_12.png',
+                            '立ち絵1_13.png',
+                            '立ち絵1_14.png',
+                            '立ち絵1_15.png',
+                            '立ち絵1_16.png',
+                            '立ち絵1_17.png',
+                            '立ち絵1_18.png',
+                            '立ち絵1_19.png',
+                            '立ち絵1_20.png',
+                            '立ち絵1_21.png',
+                            '立ち絵1_22.png',
+                            '立ち絵1_23.png',
+                            '立ち絵1_24.png',
+                            '立ち絵1_25.png',
+                            '立ち絵1_26.png',
+                        ];
+                    } else if (src === '立ち絵2.png') {
+                        thumbs = [
+                            '立ち絵2_1.png',
+                            '立ち絵2_28.png',
+                            '立ち絵2_2.png',
+                            '立ち絵2_3.png',
+                            '立ち絵2_4.png',
+                            '立ち絵2_5.png',
+                            '立ち絵2_6.png',
+                            '立ち絵2_7.png',
+                            '立ち絵2_8.png',
+                            '立ち絵2_9.png',
+                            '立ち絵2_10.png',
+                            '立ち絵2_11.png',
+                            '立ち絵2_12.png',
+                            '立ち絵2_13.png',
+                            '立ち絵2_14.png',
+                            '立ち絵2_15.png',
+                            '立ち絵2_16.png',
+                            '立ち絵2_17.png',
+                            '立ち絵2_18.png',
+                            '立ち絵2_19.png',
+                            '立ち絵2_20.png',
+                            '立ち絵2_21.png',
+                            '立ち絵2_22.png',
+                            '立ち絵2_23.png',
+                            '立ち絵2_24.png',
+                            '立ち絵2_25.png',
+                            '立ち絵2_26.png',
+                            '立ち絵2_27.png',
+                            '立ち絵2_29.png',
+                        ];
+                    } else if (src === '立ち絵3.png') {
+                        thumbs = [
+                            '立ち絵3_1.png',
+                            '立ち絵3_2.png',
+                            '立ち絵3_3.png',
+                            '立ち絵3_4.png',
+                            '立ち絵3_5.png',
+                            '立ち絵3_6.png',
+                            '立ち絵3_7.png',
+                            '立ち絵3_8.png',
+                            '立ち絵3_9.png',
+                            '立ち絵3_10.png',
+                            '立ち絵3_12.png',
+                            '立ち絵3_13.png',
+                            '立ち絵3_14.png',
+                            '立ち絵3_15.png',
+                            '立ち絵3_16.png',
+                            '立ち絵3_17.png',
+                            '立ち絵3_18.png',
+                            '立ち絵3_19.png',
+                            '立ち絵3_20.png',
+                            '立ち絵3_21.png',
+                            '立ち絵3_22.png',
+                            '立ち絵3_23.png',
+                        ];
+                    } else if (src === '立ち絵4.png') {
+                        thumbs = [
+                            '立ち絵4_1.png',
+                            '立ち絵4_2.png',
+                            '立ち絵4_3.png',
+                            '立ち絵4_4.png',
+                            '立ち絵4_5.png',
+                            '立ち絵4_6.png',
+                        ];
+                    } else if (src === '立ち絵5.png') {
+                        thumbs = [
+                            '立ち絵5_1.png',
+                            '立ち絵5_2.png',
+                            '立ち絵5_3.png',
+                            '立ち絵5_4.png',
+                            '立ち絵5_5.png',
+                            '立ち絵5_6.png',
+                            '立ち絵5_7.png',
+                            '立ち絵5_8.png',
+                            '立ち絵5_9.png',
+                            '立ち絵5_10.png',
+                            '立ち絵5_11.png',
+                            '立ち絵5_12.png',
+                            '立ち絵5_13.png',
+                            '立ち絵5_14.png',
+                            '立ち絵5_15.png',
+                            '立ち絵5_16.png',
+                            '立ち絵5_17.png',
+                            '立ち絵5_18.png',
+                            '立ち絵5_19.png',
+                            '立ち絵5_20.png',
+                            '立ち絵5_21.png',
+                            '立ち絵5_22.png',
+                            '立ち絵5_23.png',
+                            '立ち絵5_24.png',
+                            '立ち絵5_25.png',
+
+                        ];
+                    }
+
+                    // 初期表示
+                    if (thumbs.length > 0) {
+                        mainFace.src = thumbs[0];
+                    }
+
+                    // サムネイル追加
+                    thumbs.forEach((face) => {
+                        const thumb = document.createElement('img');
+                        thumb.src = face;
+                        thumb.style.width = '90px';
+                        thumb.style.height = '90px';
+                        thumb.style.objectFit = 'cover';
+                        thumb.style.cursor = 'pointer';
+                        thumb.style.borderRadius = '6px';
+                        thumb.addEventListener('click', () => {
+                            mainFace.src = face;
+                        });
+                        thumbsContainer.appendChild(thumb);
+                    });
+
+                    modal.style.display = 'flex';
+                    return; // ここで終了
+                }
+
+                // --- 以下はTRPG以外の通常モーダル ---
+                if (src === 'アイコン6.png') {
+                    modal.innerHTML = `
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <div style="display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap; max-width:90%; max-height:90%;">
+                        <img src="アイコン6.png" style="max-width:45%; max-height:90%; border-radius:8px;">
+                        <img src="アイコン6_1.png" style="max-width:45%; max-height:90%; border-radius:8px;">
+                    </div>
+                `;
+                } else {
+                    modal.innerHTML = `
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <img id="modalImage" src="${src}" style="max-width:90%; max-height:90%; border-radius:8px;">
+                `;
+                }
+                modal.style.display = 'flex';
+            });
+        });
+
+        // 背景クリックで閉じる
+        modal.addEventListener('click', (e) => {
+            const trpgModal = document.getElementById('trpgModalContent');
+            if (trpgModal && trpgModal.style.display !== 'none') {
+                if (e.target.closest('#trpg-face-thumbs')) {
+                    return;
+                }
+                closeModal();
+            } else {
+                if (e.target.id === 'imageModal') {
+                    closeModal();
+                }
+            }
+        });
+    </script>
+
+
+</body>
+</html>
