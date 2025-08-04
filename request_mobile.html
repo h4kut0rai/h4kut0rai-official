@@ -26,7 +26,7 @@
             }
 
         .hamburger {
-            display: none;
+            display: block;
             position: absolute;
             top: 180px;
             right: 20px;
@@ -214,6 +214,19 @@
             overflow: hidden;
             height: 100vh;
         }
+
+        #navMenu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+            #navMenu.open {
+                display: flex;
+                margin-top: 44px;
+            }
+
 
     </style>
 </head>
