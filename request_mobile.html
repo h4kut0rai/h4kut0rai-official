@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ご依頼について｜博兎ライ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background-color: #f9f5f3;
+            color: #4b3b38;
+        }
+
+        header {
+            position: relative;
+            background-color: #fef9f7;
+            padding: 30px 0 10px;
+            text-align: center;
+        }
+
+            header img {
+                max-width: 280px;
+                height: auto;
+            }
+
+        .hamburger {
+            display: none;
+            position: absolute;
+            top: 180px;
+            right: 20px;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+            .hamburger span {
+                display: block;
+                height: 4px;
+                background: #b88d88;
+                margin: 5px 0;
+                border-radius: 2px;
+                transition: 0.3s;
+            }
+
+            .hamburger.open span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.open span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+        nav {
+            background-color: #b88d88;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 14px 0;
+            font-size: 1rem;
+        }
+
+            nav a {
+                color: #fff8f4;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                nav a:hover {
+                    color: #ffe1dc;
+                }
+
+        main {
+            padding: 50px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #a35858;
+            border-left: 5px solid #d8a6a1;
+            padding-left: 10px;
+            margin-bottom: 20px;
+        }
+
+        p, ul {
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: #b78d87;
+            color: #fff8f4;
+            text-align: center;
+            padding: 25px 10px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .button {
+            background-color: #a35858;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 2px 2px 4px #a08888;
+            transition: background 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        a.button {
+            padding: 10px 28px;
+        }
+
+        .button:hover {
+            background-color: #8f4a4a;
+        }
+
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 260px;
+        }
+
+            .menu-card img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .menu-card h3 {
+                margin: 10px 0 5px;
+            }
+
+            .menu-card p {
+                margin: 4px 0;
+                font-weight: bold;
+            }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ▼ モーダル全体 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 70px 20px;
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            max-width: 260px;
+            margin: 0 ;
+            justify-content: center;
+        }
+
+            .modal-gallery img {
+                width: 100%;
+                border-radius: 6px;
+                display: block;
+            }
+
+        .close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        /* モーダル中スクロール禁止 */
+        body.modal-open {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        @media screen and (max-width: 600px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+                nav.open {
+                    display: flex;
+                    margin-top: 44px;
+                }
+
+            main {
+                padding: 30px 15px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .menu-card {
+                width: 90%;
+                margin: 0 auto 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="博兎ライ様_ロゴ_Fix_カラーフチ.png" alt="博兎ライ ロゴ" />
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <nav id="navMenu">
+        <a href="index_mobile.html">プロフィール</a>
+        <a href="request_mobile.html">ご依頼について</a>
+        <a href="tamashii_mobile.html">魂募集</a>
+    </nav>
+
+    <main>
+        <h2 class="section-title">🖌 ご依頼メニュー</h2>
+
+        <div class="project-container">
+            <div class="menu-card">
+                <img src="アイコン.png" alt="icon sample">
+                <h3>アイコンイラスト</h3>
+                <p>¥2,000</p>
+                <div class="btn-group">
+                    <button class="button" onclick="showSamples('icon')">実績を見る</button>
+                    <a href="https://skima.jp/item/detail?item_id=303398&sh=DNyW8IU" target="_blank" class="button">依頼する</a>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="TRPG.png" alt="model sample">
+                <h3>TRPG立ち絵</h3>
+                <p>商用利用なし¥1,000</p>
+                <p>商用利用あり¥3,000</p>
+                <div class="btn-group">
+                    <button class="button">実績を見る</button>
+                    <a href="https://skima.jp/item/detail?item_id=305036&sh=1OmsxuZ" target="_blank" class="button">依頼する</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 博兎ライ All Rights Reserved.
+    </footer>
+
+    <!-- ▼ モーダル -->
+    <div id="iconModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-gallery">
+            <img src="アイコン1.png" alt="sample1" />
+            <img src="アイコン2.png" alt="sample2" />
+            <img src="アイコン3.png" alt="sample3" />
+            <img src="アイコン4.png" alt="sample4" />
+            <img src="アイコン5.png" alt="sample5" />
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById("navMenu");
+            const burger = document.getElementById("hamburger");
+            nav.classList.toggle("open");
+            burger.classList.toggle("open");
+        }
+
+        function showSamples(type) {
+            if (type === 'icon') {
+                document.getElementById('iconModal').style.display = 'block';
+                document.body.classList.add('modal-open');
+                document.getElementById('hamburger').style.pointerEvents = 'none';
+                document.getElementById('hamburger').style.opacity = '0.3';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('iconModal').style.display = 'none';
+            document.body.classList.remove('modal-open');
+            document.getElementById('hamburger').style.pointerEvents = 'auto';
+            document.getElementById('hamburger').style.opacity = '1';
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('iconModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
