@@ -211,9 +211,9 @@
     </header>
 
     <nav id="navMenu">
-        <a href="index.html">プロフィール</a>
-        <a href="request.html">ご依頼について</a>
-        <a href="tamashii.html">魂募集</a>
+        <a id="link-profile" href="index.html">プロフィール</a>
+        <a id="link-request" href="request.html">ご依頼について</a>
+        <a id="link-tamashii" href="tamashii.html">魂募集</a>
     </nav>
 
     <main>
@@ -271,6 +271,17 @@
         function toggleMenu() {
             document.getElementById("navMenu").classList.toggle("open");
             document.getElementById("hamburger").classList.toggle("open");
+        }
+    </script>
+
+    <script>
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("link-profile").href = "index_mobile.html";
+                document.getElementById("link-request").href = "request_mobile.html";
+                document.getElementById("link-tamashii").href = "tamashii_mobile.html";
+            });
         }
     </script>
 
