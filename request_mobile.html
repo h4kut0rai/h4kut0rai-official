@@ -120,7 +120,7 @@
         }
 
         a.button {
-            padding: 10px 28px;
+            padding: 10px 25px;
         }
 
         .button:hover {
@@ -184,12 +184,12 @@
 
         .modal-gallery {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5px;
-            max-width: 370px;
-            max-height: 100vh; 
-            overflow-y: auto;
-            padding-right: 6px; 
+            grid-template-columns: 1fr 1fr; /* ← 2列に固定！ */
+            gap: 10px;
+            padding: 0 20px;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
         }
 
             .modal-gallery img {
@@ -215,36 +215,6 @@
             height: 100vh;
         }
 
-        @media screen and (max-width: 600px) {
-            .hamburger {
-                display: block;
-            }
-
-            nav {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-
-                nav.open {
-                    display: flex;
-                    margin-top: 44px;
-                }
-
-            main {
-                padding: 30px 15px;
-            }
-
-            .section-title {
-                font-size: 1.4rem;
-            }
-
-            .menu-card {
-                width: 90%;
-                margin: 0 auto 30px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -284,7 +254,7 @@
                 <p>商用利用なし¥1,000</p>
                 <p>商用利用あり¥3,000</p>
                 <div class="btn-group">
-                    <button class="button">実績を見る</button>
+                    <button class="button" onclick="showSamples('trpg')">実績を見る</button>
                     <a href="https://skima.jp/item/detail?item_id=305036&sh=1OmsxuZ" target="_blank" class="button">依頼する</a>
                 </div>
             </div>
@@ -309,6 +279,19 @@
         </div>
     </div>
 
+    <!-- ▼ TRPGモーダル -->
+    <div id="trpgModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-gallery">
+            <img src="立ち絵1.png" alt="TRPGサンプル1" />
+            <img src="立ち絵2.png" alt="TRPGサンプル2" />
+            <img src="立ち絵3.png" alt="TRPGサンプル3" />
+            <img src="立ち絵4.png" alt="TRPGサンプル3" />
+            <img src="立ち絵5.png" alt="TRPGサンプル3" />
+        </div>
+    </div>
+
+
     <script>
         function toggleMenu() {
             const nav = document.getElementById("navMenu");
@@ -318,9 +301,15 @@
         }
 
         function showSamples(type) {
+            let modal = null;
             if (type === 'icon') {
-                const modal = document.getElementById('iconModal');
-                modal.style.display = 'flex'; 
+                modal = document.getElementById('iconModal');
+            } else if (type === 'trpg') {
+                modal = document.getElementById('trpgModal');
+            }
+
+            if (modal) {
+                modal.style.display = 'flex';
                 document.body.classList.add('modal-open');
                 document.getElementById('hamburger').style.pointerEvents = 'none';
                 document.getElementById('hamburger').style.opacity = '0.3';
@@ -328,17 +317,20 @@
         }
 
         function closeModal() {
-            document.getElementById('iconModal').style.display = 'none';
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(m => m.style.display = 'none');
             document.body.classList.remove('modal-open');
             document.getElementById('hamburger').style.pointerEvents = 'auto';
             document.getElementById('hamburger').style.opacity = '1';
         }
 
         window.onclick = function (event) {
-            const modal = document.getElementById('iconModal');
-            if (event.target === modal) {
-                closeModal();
-            }
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(m => {
+                if (event.target === m) {
+                    closeModal();
+                }
+            });
         }
     </script>
 </body>
