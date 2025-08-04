@@ -14,6 +14,7 @@
         }
 
         header {
+            position: relative;
             background-color: #fef9f7;
             padding: 30px 0 10px;
             text-align: center;
@@ -22,6 +23,38 @@
             header img {
                 max-width: 280px;
                 height: auto;
+            }
+
+        .hamburger {
+            display: none;
+            position: absolute;
+            top: 180px;
+            right: 20px;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+            .hamburger span {
+                display: block;
+                height: 4px;
+                background: #b88d88;
+                margin: 5px 0;
+                border-radius: 2px;
+                transition: 0.3s;
+            }
+
+            .hamburger.open span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.open span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
             }
 
         nav {
@@ -55,7 +88,6 @@
             border-left: 5px solid #d8a6a1;
             padding-left: 10px;
             margin-bottom: 20px;
-
         }
 
         p, ul {
@@ -88,12 +120,42 @@
                 background-color: #8f4a4a;
             }
 
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+            .project-container a {
+                text-align: center;
+                width: 240px;
+            }
+
+            .project-container img {
+                width: 100%;
+                height: auto;
+                border-radius: 12px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+            }
+
         @media screen and (max-width: 600px) {
+            .hamburger {
+                display: block;
+            }
+
             nav {
+                display: none;
                 flex-direction: column;
                 align-items: center;
                 gap: 10px;
             }
+
+                nav.open {
+                    display: flex;
+                    margin-top: 44px; /* ← ここを追加！ハンバーガーアイコンに合わせて調整 */
+                }
 
             main {
                 padding: 30px 15px;
@@ -102,6 +164,35 @@
             .section-title {
                 font-size: 1.4rem;
             }
+
+            #about div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+                #about div > div {
+                    order: 1;
+                }
+
+                    #about div > div + div {
+                        order: 2;
+                    }
+
+            #about p {
+                order: 3;
+                margin-top: 15px;
+                text-align: center;
+            }
+
+            iframe {
+                height: 400px !important;
+            }
+
+            .project-container a {
+                width: 45%;
+                max-width: 180px;
+            }
         }
     </style>
 </head>
@@ -109,112 +200,72 @@
 
     <header>
         <img src="博兎ライ様_ロゴ_Fix_カラーフチ.png" alt="博兎ライ ロゴ" />
+        <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
 
-    <nav>
+    <nav id="navMenu">
         <a href="index.html">プロフィール</a>
         <a href="request.html">ご依頼について</a>
         <a href="tamashii.html">魂募集</a>
     </nav>
+
     <main>
         <section id="about">
             <h2 class="section-title">📝 プロフィール</h2>
-
-            <div style="
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  ">
-
-                <!-- 左側：アイコン画像とSNSリンク -->
+            <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
                 <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
-                    <img src="博兎アイコン.png" alt="博兎ライのアイコン" style="
-      width: 160px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    ">
+                    <img src="博兎アイコン.png" alt="博兎ライのアイコン" style="width: 160px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                     <div style="margin-top: 10px; text-align: center;">
-                        <a href="https://youtube.com/@h4kut0rai?si=mS008YVv39NudqGb" target="_blank" style="
-        margin: 0 10px;
-        color: #8a5652;
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: color 0.2s;
-      ">
-                            🎥 YouTube
-                        </a>
-                        <a href="https://x.com/h4kut0rai" target="_blank" style="
-        margin: 0 10px;
-        color: #8a5652;
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: color 0.2s;
-      ">
-                            🐦 X (Twitter)
-                        </a>
+                        <a href="https://youtube.com/@h4kut0rai?si=mS008YVv39NudqGb" target="_blank" style="margin: 0 10px; color: #8a5652; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">🎥 YouTube</a>
+                        <a href="https://x.com/h4kut0rai" target="_blank" style="margin: 0 10px; color: #8a5652; text-decoration: none; font-size: 0.9rem; transition: color 0.2s;">🐦 X (Twitter)</a>
                     </div>
                 </div>
 
-                <!-- 右側：自己紹介 -->
                 <p style="flex: 1; margin: 0;">
                     <strong>おはぴょん！どうも、博兎ライです🐰❤</strong><br>
                     ゲーム配信やお絵描き、まったり雑談などを中心に活動しています。<br>
                     落ち着いた空間を届けられるように、配信もゆるやかに進めています✨
                 </p>
-
             </div>
         </section>
 
-        <!-- 進行中のYouTube企画 -->
         <section id="projects" style="margin-top: 60px;">
             <h2 class="section-title">🎬 進行中のYouTube企画</h2>
-
-            <!-- 注意書きをタイトルの下・左寄せで -->
             <p style="font-size:0.95rem; color:#6a5550; margin:5px 0 20px 0;">
                 ※画像をクリックすると企画のYouTubeマイリストへ移動します
             </p>
-
-            <div style="
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        align-items: flex-start;
-        flex-wrap: nowrap;
-    ">
-                <!-- あつ森企画 -->
-                <a href="https://youtube.com/playlist?list=PLcF-rcJNmrfqlkO3CXTJqtdxGhLO5HHZo&si=ERcCMbLmCOOW-gR8" target="_blank" style="text-align: center;">
-                    <img src="IMG_1062１.png" alt="あつ森企画"
-                         style="width: 300px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;">
+            <div class="project-container">
+                <a href="https://youtube.com/playlist?list=PLcF-rcJNmrfqlkO3CXTJqtdxGhLO5HHZo&si=ERcCMbLmCOOW-gR8" target="_blank">
+                    <img src="IMG_1062１.png" alt="あつ森企画">
                 </a>
-
-                <!-- スロットVtuber企画 -->
-                <a href="https://youtube.com/playlist?list=PLcF-rcJNmrfqAeFKfaBKnJvdWIzjsRs2r&si=CPjgzO0Oj1696K2i" target="_blank" style="text-align: center;">
-                    <img src="IMG_1148a.PNG" alt="スロットVtuber企画"
-                         style="width: 300px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer;">
+                <a href="https://youtube.com/playlist?list=PLcF-rcJNmrfqAeFKfaBKnJvdWIzjsRs2r&si=CPjgzO0Oj1696K2i" target="_blank">
+                    <img src="IMG_1148a.PNG" alt="スロットVtuber企画">
                 </a>
             </div>
         </section>
 
-        <!-- 配信スケジュール -->
         <section id="schedule" style="margin-top: 60px;">
             <h2 class="section-title">📅 配信スケジュール</h2>
             <div style="overflow-x: auto; text-align: center;">
-                <iframe src="https://calendar.google.com/calendar/embed?src=53b4ce8d7379c89bc3e85d22fc47d812e67c94f5e507b1de5d4cda0adffe81fa%40group.calendar.google.com&ctz=Asia%2FTokyo"
-                        style="border: 0; width: 100%; max-width: 800px; height: 600px;"
-                        frameborder="0"
-                        scrolling="no">
-                </iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?src=53b4ce8d7379c89bc3e85d22fc47d812e67c94f5e507b1de5d4cda0adffe81fa%40group.calendar.google.com&ctz=Asia%2FTokyo" style="border: 0; width: 100%; max-width: 800px; height: 600px;" frameborder="0" scrolling="no"></iframe>
             </div>
         </section>
-
     </main>
 
     <footer>
         © 2025 博兎ライ All Rights Reserved.
     </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById("navMenu").classList.toggle("open");
+            document.getElementById("hamburger").classList.toggle("open");
+        }
+    </script>
 
 </body>
 </html>
