@@ -168,7 +168,9 @@
 
         /* ▼ モーダル全体 */
         .modal {
-            display: none;
+            display: none; 
+            align-items: center;
+            justify-content: center;
             position: fixed;
             z-index: 10000;
             left: 0;
@@ -177,7 +179,7 @@
             height: 100vh;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.85);
-            padding: 70px 10px;
+            padding: 50px 10px;
         }
 
         .modal-gallery {
@@ -185,8 +187,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 5px;
             max-width: 370px;
-            margin: 0 ;
-            justify-content: center;
+            max-height: 100vh; 
+            overflow-y: auto;
+            padding-right: 6px; 
         }
 
             .modal-gallery img {
@@ -297,10 +300,12 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-gallery">
             <img src="アイコン1.png" alt="sample1" />
+            <img src="アイコン7.png" alt="sample1" />
             <img src="アイコン2.png" alt="sample2" />
             <img src="アイコン3.png" alt="sample3" />
             <img src="アイコン4.png" alt="sample4" />
             <img src="アイコン5.png" alt="sample5" />
+            <img src="アイコン6.png" alt="sample5" />
         </div>
     </div>
 
@@ -314,7 +319,8 @@
 
         function showSamples(type) {
             if (type === 'icon') {
-                document.getElementById('iconModal').style.display = 'block';
+                const modal = document.getElementById('iconModal');
+                modal.style.display = 'flex'; 
                 document.body.classList.add('modal-open');
                 document.getElementById('hamburger').style.pointerEvents = 'none';
                 document.getElementById('hamburger').style.opacity = '0.3';
