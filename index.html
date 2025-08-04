@@ -154,7 +154,7 @@
 
                 nav.open {
                     display: flex;
-                    margin-top: 44px; /* ← ここを追加！ハンバーガーアイコンに合わせて調整 */
+                    margin-top: 44px;
                 }
 
             main {
@@ -186,7 +186,10 @@
             }
 
             iframe {
-                height: 400px !important;
+                width: 100%;
+                height: 600px;
+                min-height: 500px;
+                border: 0;
             }
 
             .project-container a {
@@ -251,7 +254,11 @@
         <section id="schedule" style="margin-top: 60px;">
             <h2 class="section-title">📅 配信スケジュール</h2>
             <div style="overflow-x: auto; text-align: center;">
-                <iframe src="https://calendar.google.com/calendar/embed?src=53b4ce8d7379c89bc3e85d22fc47d812e67c94f5e507b1de5d4cda0adffe81fa%40group.calendar.google.com&ctz=Asia%2FTokyo" style="border: 0; width: 100%; max-width: 800px; height: 600px;" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?src=53b4ce8d7379c89bc3e85d22fc47d812e67c94f5e507b1de5d4cda0adffe81fa%40group.calendar.google.com&ctz=Asia%2FTokyo"
+                        style="border: 0; width: 100%; max-width: 800px; height: 600px; min-height: 500px;"
+                        frameborder="0"
+                        scrolling="no"></iframe>
+
             </div>
         </section>
     </main>
