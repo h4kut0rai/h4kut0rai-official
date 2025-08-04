@@ -120,7 +120,7 @@
         }
 
         a.button {
-            padding: 10px 25px;
+            padding: 10px 20px;
         }
 
         .button:hover {
@@ -227,6 +227,28 @@
                 margin-top: 44px;
             }
 
+        .image-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .zoom-button {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            background-color: #8f4a4a;
+            color: white;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+            .zoom-button:hover {
+                background-color: #8f4a4a;
+            }
+
 
     </style>
 </head>
@@ -296,12 +318,33 @@
     <div id="trpgModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-gallery">
-            <img src="立ち絵1.png" alt="TRPGサンプル1" />
-            <img src="立ち絵2.png" alt="TRPGサンプル2" />
-            <img src="立ち絵3.png" alt="TRPGサンプル3" />
-            <img src="立ち絵4.png" alt="TRPGサンプル3" />
-            <img src="立ち絵5.png" alt="TRPGサンプル3" />
+            <div class="image-wrapper">
+                <img src="立ち絵1.png" alt="TRPGサンプル1" />
+                <button class="zoom-button" onclick="zoomImage('立ち絵1.png')">拡大</button>
+            </div>
+            <div class="image-wrapper">
+                <img src="立ち絵2.png" alt="TRPGサンプル2" />
+                <button class="zoom-button" onclick="zoomImage('立ち絵2.png')">拡大</button>
+            </div>
+            <div class="image-wrapper">
+                <img src="立ち絵3.png" alt="TRPGサンプル3" />
+                <button class="zoom-button" onclick="zoomImage('立ち絵3.png')">拡大</button>
+            </div>
+            <div class="image-wrapper">
+                <img src="立ち絵4.png" alt="TRPGサンプル4" />
+                <button class="zoom-button" onclick="zoomImage('立ち絵4.png')">拡大</button>
+            </div>
+            <div class="image-wrapper">
+                <img src="立ち絵5.png" alt="TRPGサンプル5" />
+                <button class="zoom-button" onclick="zoomImage('立ち絵5.png')">拡大</button>
+            </div>
         </div>
+    </div>
+
+    <!-- 拡大用モーダル -->
+    <div id="zoomModal" class="modal" onclick="closeZoomModal()">
+        <span class="close">&times;</span>
+        <img id="zoomedImage" src="" alt="拡大画像" style="max-width: 150%; max-height: 200%; margin: auto;" />
     </div>
 
 
@@ -345,6 +388,22 @@
                 }
             });
         }
+
+            function zoomImage(src) {
+                const zoomModal = document.getElementById('zoomModal');
+                const zoomedImage = document.getElementById('zoomedImage');
+                zoomedImage.src = src;
+                zoomModal.style.display = 'flex';
+                document.body.classList.add('modal-open');
+            }
+
+        function closeZoomModal() {
+            const zoomModal = document.getElementById('zoomModal');
+            zoomModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+
+
     </script>
 </body>
 </html>
